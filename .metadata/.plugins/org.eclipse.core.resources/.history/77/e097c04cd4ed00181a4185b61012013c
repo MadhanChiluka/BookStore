@@ -1,0 +1,45 @@
+package com.bookstore.api.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bookstore.api.domain.BillingAddress;
+import com.bookstore.api.domain.Order;
+import com.bookstore.api.domain.Payment;
+import com.bookstore.api.domain.ShippingAddress;
+import com.bookstore.api.domain.ShoppingCart;
+import com.bookstore.api.domain.User;
+import com.bookstore.api.utility.MailConstructor;
+
+@Service
+public class OrderServiceImpl implements OrderService{
+	
+	@Autowired
+	private OrderRepository orderRepository;
+	
+	@Autowired
+	private ShippingAddressRepository shippingAddressRepository;
+	
+	@Autowired
+	private BillingAddressRepository billingAddressRepository;
+	
+	@Autowired
+	private PaymentRepository paymentRepository;
+	
+	@Autowired 
+	private BookService bookService;
+	
+	@Autowired
+	private CartItemService cartItemService;
+	
+	@Autowired
+	private MailConstructor mailConstructor;
+
+	@Override
+	public Order createOrder(ShoppingCart shoppingCart, ShippingAddress shippingAddress, BillingAddress billingAddress,
+			Payment payment, String shippingMethod, User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

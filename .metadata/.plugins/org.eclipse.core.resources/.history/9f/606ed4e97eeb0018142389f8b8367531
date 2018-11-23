@@ -1,0 +1,27 @@
+package com.bookstore.api.resources;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bookstore.api.service.BookService;
+import com.bookstore.api.service.UserService;
+
+@RestController
+@RequestMapping("/cart")
+public class ShoppingCartResource {
+	
+	@Autowired
+	private BookService bookService;
+	
+	@Autowired 
+	private UserService userService;
+	
+	@Autowired
+	private CartItemService cartItemService;
+	
+	@Autowired
+	private ShoppingCartService shoppingCartService;
+	
+
+}

@@ -1,0 +1,75 @@
+package com.bookstore.api.service;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bookstore.api.domain.Book;
+import com.bookstore.api.domain.CartItem;
+import com.bookstore.api.domain.ShoppingCart;
+import com.bookstore.api.domain.User;
+import com.bookstore.api.repository.BookToCartItemRepository;
+import com.bookstore.api.repository.CartItemRepository;
+
+@Service
+public class CartItemServiceImpl implements CartItemService{
+	
+	@Autowired
+	private CartItemRepository cartItemRepo;
+	
+	@Autowired
+	private BookToCartItemRepository BookToCartItemRepo;
+
+	@Override
+	public CartItem addBookToCartItem(Book book, User user, int quantity) {
+		List<CartItem> cartItemList = findByShoppingCart(user.getShoppingCart());
+		
+		for(CartItem cartItem : cartItemList ) {
+			if(book.getId()==cartItem.getBook().getId()) {
+				cartItem.setQuantity(cartItem.getQuantity()+quantity);
+				cartItem.setSubTotal(new BigDecimal(book.getOurPrice()).multiply(new BigDecimal(quantity)));
+				cartItemRepo.save(cartItem);
+				return cartItem;
+			}
+		}
+		
+		CartItem cartItem =  new CartItem();
+		cartItem.setQuantity(quantity);
+		cartItem.setBook(book);
+		cartItem.setShoppingCart(user.getShoppingCart());
+		cartItem.setSubTotal(new BigDecimal(book.getOurPrice()).multiply(new BigDecimal(quantity)));
+	}
+
+	@Override
+	public List<CartItem> findByShoppingCart(ShoppingCart cart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CartItem updateCartItem(CartItem cartItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeCartItem(CartItem cartItem) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public CartItem findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CartItem save(CartItem cartItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

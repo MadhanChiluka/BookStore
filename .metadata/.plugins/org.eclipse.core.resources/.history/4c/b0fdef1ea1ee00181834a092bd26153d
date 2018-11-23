@@ -1,0 +1,7 @@
+package com.bookstore.api.resources;
+
+@RestController
+@RequestMapping("/order")
+public class OrderResource {
+
+}

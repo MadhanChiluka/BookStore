@@ -1,0 +1,5 @@
+package com.bookstore.api.resources;
+
+public class ShoppingCartResource {
+
+}

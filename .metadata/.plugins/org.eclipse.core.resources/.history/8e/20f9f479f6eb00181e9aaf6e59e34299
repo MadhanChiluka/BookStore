@@ -1,0 +1,51 @@
+package com.bookstore.api.resources;
+
+import java.security.Principal;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bookstore.api.domain.Book;
+import com.bookstore.api.domain.User;
+import com.bookstore.api.service.BookService;
+import com.bookstore.api.service.CartItemService;
+import com.bookstore.api.service.ShoppingCartService;
+import com.bookstore.api.service.UserService;
+
+@RestController
+@RequestMapping("/cart")
+public class ShoppingCartResource {
+	
+	@Autowired
+	private BookService bookService;
+	
+	@Autowired 
+	private UserService userService;
+	
+	@Autowired
+	private CartItemService cartItemService;
+	
+	@Autowired
+	private ShoppingCartService shoppingCartService;
+	
+	@RequestMapping("/add")
+	public ResponseEntity addItem(@RequestBody HashMap<String, String> mapper, Principal principal) {
+		String bookId = mapper.get("bookId");
+		String quantity = mapper.get("quantity");
+		
+		User user = userService.findByUsername(principal.getName());
+		Book book = bookService.findOne(Long.parseLong(bookId));
+		
+		if(Integer.parseInt(quantity) > book.getStockNumber()) {
+			return new ResponseEntity("Not Enough Stock", HttpStatus.BAD_REQUEST)
+		}
+	}
+	
+	
+
+}

@@ -1,0 +1,54 @@
+package com.bookstore.api.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.bookstore.api.domain.Book;
+import com.bookstore.api.domain.CartItem;
+import com.bookstore.api.domain.ShoppingCart;
+import com.bookstore.api.domain.User;
+
+@Service
+public class CartItemServiceImpl implements CartItemService{
+	
+	@Autowired
+	private CartItemRepository cartItemRepo;
+
+	@Override
+	public CartItem addBookToCartItem(Book book, User user, int quantity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ShoppingCart> findByShoppingCart(ShoppingCart cart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CartItem updateCartItem(CartItem cartItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeCartItem(CartItem cartItem) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public CartItem findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CartItem save(CartItem cartItem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
